@@ -1,21 +1,19 @@
 name: flutter analyze
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize]
 
   workflow_dispatch:
 
 jobs:
   flutter_analyze:
-
     runs-on: ubuntu-latest
-
     timeout-minutes: 5
-
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      # flutterインストール（キャッシュする）
       - name: flutter cache
         uses: subosito/flutter-action@v2
         with:
@@ -31,18 +29,14 @@ jobs:
           flutter-version: "3.3.10"
           channel: "stable"
 
-      # flutter versionの確認
       - name: flutter version
         run: flutter --version
 
-       # flutter pub get 実行
       - name: flutter pub get
         run: flutter pub get
 
-      # 静的解析の実行
       - name: flutter analyze
         run: flutter analyze
 
-      # フォーマットを実行
       - name: format
         run: flutter format .
