@@ -1,12 +1,7 @@
 name: flutter analyze
 
 on:
-  pull_request:
-    # プルリク作成時とプルリクにコミットが行われた時
-    types: [opened, synchronize]
-    # 対象ブランチを指定
-    branches:
-      - develop
+  [pull_request]
 
   workflow_dispatch:
 
